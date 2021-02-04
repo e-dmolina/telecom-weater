@@ -1,3 +1,7 @@
+La imagen de fondo cambia según el estado del tiempo
+Quize utilizar un endpoint que me devolvía el preonostico extendido pero era con una cuenta paga, asique tuve que utilizar otro endpoint
+que me traia el pronostico de los proximos 5 dias pero con el pronostico cada 3 horas asique tuve q filtrar la response para extraer solo un dato por día. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
