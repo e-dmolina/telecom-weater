@@ -69,24 +69,18 @@ const App = () => {
 
   const changeBackgroundImage = rangeId => {
     switch (true) {
-      // case rangeId >= 200 && rangeId <= 232:
-      //     setIcon(weatherIcons.Thunderstorm);
-      //     break;
-      // case rangeId >= 300 && rangeId <= 321:
-      //     setIcon(weatherIcons.Drizle);
-      //     break;
-      case rangeId >= 500 && rangeId <= 531:
+      case rangeId >= 200 && rangeId <= 232:
+          return 'thunderstorm';
+      case rangeId >= 300 && rangeId <= 531:
         return 'rain';
       case rangeId >= 600 && rangeId <= 622:
           return 'snow';
-      // case rangeId >= 701 && rangeId <= 781:
-      //     setIcon(weatherIcons.Atmosphere);
-      //     break;
+      case rangeId >= 701 && rangeId <= 781:
+          return 'fog';
       case rangeId === 800:
         return '';
-      // case rangeId >= 801 && rangeId <= 804:
-      //     setIcon(weatherIcons.Clouds);
-      //     break;
+      case rangeId >= 801 && rangeId <= 804:
+          return 'cloud';
       default:
         return '';
     }
@@ -100,11 +94,11 @@ const App = () => {
           {dataSelectedCity ? <PrincipalWeather info={dataSelectedCity} /> : <ReactLoading type="bars" color="white" height={667} width={375} />}
         </div>
         <div className="row mb-4">
-          {pronostic && <ExtendedPronostic pronostic={pronostic} />}
+          {dataSelectedCity && pronostic && <ExtendedPronostic pronostic={pronostic} />}
         </div>
         <div className="row">
           <div className="col-md-12 px-0" >
-            {list && <CityList selectToCity={selectToCity} list={list} selectedCity={selectedCity} />}
+            {dataSelectedCity && list && <CityList selectToCity={selectToCity} list={list} selectedCity={selectedCity} />}
           </div>
         </div>
       </div>

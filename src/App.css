@@ -16,6 +16,18 @@ body{
   background-image: url('./assets/img/snow.jpg');
 }
 
+.app.cloud{
+  background-image: url('./assets/img/cloud.jpg');
+}
+
+.app.thunderstorm{
+  background-image: url('./assets/img/thunderstorm.jpg');
+}
+
+.app.fog{
+  background-image: url('./assets/img/fog.jpg');
+}
+
 main{
   min-height: 100vh;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.75));

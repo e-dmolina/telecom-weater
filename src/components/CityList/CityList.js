@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import City from '../Citty/City';
+import City from './Citty/City';
 import './styles.css';
 
 
