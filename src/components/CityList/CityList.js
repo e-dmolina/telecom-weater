@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import City from './Citty/City';
 import './styles.css';
 
 
 const CityList = ({selectToCity, list, selectedCity}) => {
-
-    useEffect(() => {
-        console.log('currentCity desde citylist',list)
-    }, []);
-
 
     return (
         <table className="table table-hover">

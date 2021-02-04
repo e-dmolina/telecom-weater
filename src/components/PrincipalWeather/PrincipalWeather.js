@@ -4,8 +4,6 @@ import './styles.css';
 
 
 const PrincipalWeather = ({ info }) => {
-    console.log('principal', info)
-
 
     const [icon, setIcon] = useState('');
 
