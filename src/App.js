@@ -5,6 +5,7 @@ import CityList from './components/CityList/CityList';
 import PrincipalWeather from './components/PrincipalWeather/PrincipalWeather';
 import ExtendedPronostic from './components/ExtendedPronostic/ExtendedPronostic';
 import moment from 'moment';
+import ReactLoading from 'react-loading';
 
 
 
@@ -16,12 +17,11 @@ const App = () => {
   const [dataSelectedCity, setDataSelectedCity] = useState();
   const [pronostic, setPronostic] = useState([]);
   const [list, setList] = useState([])
-  const apiId = 'b6e48678f6666f26e319929b9b9fae21';
+  const apiId = process.env.REACT_APP_API_ID;
 
   const selectToCity = async (cityName, id) => {
     const dataCity = list.filter(c => c.id === id);
     setDataSelectedCity(dataCity[0]);
-    // setselectedCity(cityName)
     getExtendedWeather(cityName, country);
     setselectedCity(cityName);
   }
@@ -31,7 +31,7 @@ const App = () => {
   }, []);
 
   const callToIpApi = async () => {
-    const respuestaIpApi = await fetch('http://ip-api.com/json');
+    const respuestaIpApi = await fetch(process.env.REACT_APP_IP_API_URL);
     const dataIpApi = await respuestaIpApi.json();
     const { regionName, countryCode, lat, lon } = dataIpApi;
     setCountry(countryCode);
@@ -47,8 +47,6 @@ const App = () => {
     const data = await res.json();
     setList(data.list);
     setDataSelectedCity(data.list[0]);
-    console.log('data.list', data.list)
-    // selectToCity(data.list[0].name, data.list[0].id);
   }
 
   const getExtendedWeather = async (city, country) => {
@@ -66,7 +64,6 @@ const App = () => {
       }
     });
 
-    console.log('filtered', filteredPronostic);
     setPronostic(filteredPronostic);
   }
 
@@ -96,11 +93,11 @@ const App = () => {
   }
 
   return (
-    <main className={`app ${changeBackgroundImage(dataSelectedCity.weather[0].id)}`}>
+    <main className={`app ${dataSelectedCity && changeBackgroundImage(dataSelectedCity.weather[0].id)}`}>
       <Header />
       <div className="container ">
-        <div className="row mb-3">
-          {dataSelectedCity && <PrincipalWeather info={dataSelectedCity} />}
+        <div className="row mb-3 d-flex justify-content-center">
+          {dataSelectedCity ? <PrincipalWeather info={dataSelectedCity} /> : <ReactLoading type="bars" color="white" height={667} width={375} />}
         </div>
         <div className="row mb-4">
           {pronostic && <ExtendedPronostic pronostic={pronostic} />}
